@@ -1,0 +1,64 @@
+# Dependencies
+
+node_modules/
+
+# Build output
+
+dist/
+build/
+
+# Logs
+
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+
+.env
+.env.*
+!.env.example
+
+# OS files
+
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# TypeScript
+
+*.tsbuildinfo
+
+# Coverage
+
+coverage/
+
+# Temporary files
+
+tmp/
+temp/
+
+# Optional: lock files (pilih sesuai kebutuhan tim)
+
+# package-lock.json
+
+# yarn.lock
+
+# pnpm-lock.yaml
+
+# Docker (optional)
+
+.dockerignore
+
+# Misc
+
+*.pem
