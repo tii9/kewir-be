@@ -1,9 +1,11 @@
-import express from "express";
+import express, { Application, Request, Response } from 'express';
 
-const app = express();
+const app: Application = express();
 
-app.get("/", (req, res) => {
-  res.send("be kewir express");
+app.use(express.json());
+
+app.get('/', (req: Request, res: Response) => {
+  res.send('The backend server is alive and running!');
 });
 
 export default app;
