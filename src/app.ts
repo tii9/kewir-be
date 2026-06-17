@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import ProductRouter from "./modules/products/product.route";
+import PaymentRouter from "./modules/payment/payment.route"
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth";
 
@@ -19,7 +20,8 @@ app.all("/api/auth/*splat", toNodeHandler(auth));
 
 app.use(express.json());
 
-app.use("/api/product", ProductRouter);
+app.use("/api/product", ProductRouter)
+app.use("/api/payment", PaymentRouter)
 
 app.get("/", (req: Request, res: Response) => {
   console.log("base route");
