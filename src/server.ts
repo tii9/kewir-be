@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 import { connectDB } from "./lib/db";
 import PaymentRouter from "./modules/payment/payment.route";
 import ProductRouter from "./modules/products/product.route";
+import CategoryRouter from "./modules/category/category.route";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -14,6 +15,7 @@ connectDB();
 
 app.use("/api/product", ProductRouter);
 app.use("/api/payment", PaymentRouter);
+app.use("/api/category", CategoryRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hobiku API is running!");
