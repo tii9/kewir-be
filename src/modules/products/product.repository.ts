@@ -1,4 +1,4 @@
-import Product, { IProduct } from "../../models/Product";
+import Product, { IProduct } from "../../models/product";
 
 export const findAll = async (): Promise<IProduct[]> => {
   return await Product.find();
