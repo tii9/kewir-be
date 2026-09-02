@@ -9,7 +9,7 @@ export interface IProduct extends Document {
   stock: number;
   is_available: boolean;
   fine: number;
-  category?: string; 
+  category?: string;
   image_url: string;
   created_at: Date;
   updated_at: Date;
@@ -68,11 +68,11 @@ const productSchema = new Schema<IProduct>(
   },
   {
     // Mengubah default penamaan Mongoose (createdAt) menjadi snake_case (created_at) sesuai ERD
-    timestamps: { 
-      createdAt: 'created_at', 
-      updatedAt: 'updated_at' 
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
     },
-  }
+  },
 );
 
 const Product = model<IProduct>("Product", productSchema);
