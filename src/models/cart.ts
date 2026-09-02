@@ -1,20 +1,19 @@
 import { Schema, model, Document } from "mongoose";
 
-// Interface untuk Cart Item (Embedded)
+// Cart Item (Embedded Document)
 export interface ICartItem {
   product_id: Schema.Types.ObjectId;
   quantity: number;
 }
 
-// Interface untuk Cart utama
+// Cart
 export interface ICart extends Document {
-  user_id: Schema.Types.ObjectId;
-  items: ICartItem[]; // cart_item masuk ke sini
+  user_id: string; // Better Auth user.id
+  items: ICartItem[];
   created_at: Date;
   updated_at: Date;
 }
 
-// Schema untuk item (tidak dijadikan model terpisah)
 const cartItemSchema = new Schema<ICartItem>(
   {
     product_id: {
@@ -22,29 +21,40 @@ const cartItemSchema = new Schema<ICartItem>(
       ref: "Product",
       required: true,
     },
+
     quantity: {
       type: Number,
       required: true,
       min: [1, "Quantity must be at least 1"],
     },
   },
-  // Sub-document juga bisa punya timestamp kalau dibutuhkan sesuai diagram
-  { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } }
+  {
+    _id: false,
+  },
 );
 
 const cartSchema = new Schema<ICart>(
   {
     user_id: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
+      type: String,
       required: true,
+      unique: true,
+      index: true,
     },
-    items: [cartItemSchema],
+
+    items: {
+      type: [cartItemSchema],
+      default: [],
+    },
   },
   {
-    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
-  }
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
+  },
 );
 
 const Cart = model<ICart>("Cart", cartSchema);
+
 export default Cart;
