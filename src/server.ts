@@ -5,6 +5,7 @@ import PaymentRouter from "./modules/payment/payment.route";
 import ProductRouter from "./modules/products/product.route";
 import CategoryRouter from "./modules/category/category.route";
 import CartRouter from "./modules/cart/cart.route";
+import OrderRouter from "./modules/order/order.route"; 
 import { fromNodeHeaders, toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth";
 
@@ -22,6 +23,7 @@ app.use("/api/product", ProductRouter);
 app.use("/api/payment", PaymentRouter);
 app.use("/api/category", CategoryRouter);
 app.use("/api/cart", CartRouter);
+app.use("/api/order", OrderRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hobiku API is running!");
