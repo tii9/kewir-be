@@ -1,14 +1,14 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model, Document, Types } from "mongoose"; // added Types
 
 export interface IOrderItem {
-  product_id: Schema.Types.ObjectId;
+  product_id: Types.ObjectId;   // was Schema.Types.ObjectId
   quantity: number;
   subtotal: number;
   total_amount: number;
 }
 
 export interface IOrder extends Document {
-  user_id: Schema.Types.ObjectId;
+  user_id: Types.ObjectId;      // was Schema.Types.ObjectId
   order_number: string;
   items: IOrderItem[];
   total_items: number;
@@ -24,7 +24,7 @@ export interface IOrder extends Document {
 const orderItemSchema = new Schema<IOrderItem>(
   {
     product_id: {
-      type: Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,   // stays as-is, this is correct here
       ref: "Product",
       required: true,
     },
@@ -32,12 +32,12 @@ const orderItemSchema = new Schema<IOrderItem>(
     subtotal: { type: Number, required: true },
     total_amount: { type: Number, required: true },
   },
-  { timestamps: { createdAt: 'created_at', updatedAt: false } } // Hanya created_at sesuai ERD
+  { timestamps: { createdAt: 'created_at', updatedAt: false } }
 );
 
 const orderSchema = new Schema<IOrder>(
   {
-    user_id: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    user_id: { type: Schema.Types.ObjectId, ref: "User", required: true }, // stays as-is
     order_number: { type: String, required: true, unique: true },
     items: [orderItemSchema],
     total_items: { type: Number, required: true },

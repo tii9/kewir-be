@@ -18,3 +18,11 @@ export const createCart = async (userId: string): Promise<ICart> => {
 export const saveCart = async (cart: ICart): Promise<ICart> => {
   return await cart.save();
 };
+
+export const clearCart = async (userId: string): Promise<ICart | null> => {
+  return await Cart.findOneAndUpdate(
+    { user_id: new Types.ObjectId(userId) },
+    { items: [] },
+    { new: true }
+  );
+};

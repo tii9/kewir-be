@@ -26,3 +26,14 @@ export const deleteById = async (id: string): Promise<IProduct | null> => {
   return await Product.findByIdAndDelete(id);
 };
 
+export const decrementStock = async (
+  id: string,
+  quantity: number
+): Promise<IProduct | null> => {
+  return await Product.findOneAndUpdate(
+    { _id: id, stock: { $gte: quantity } },
+    { $inc: { stock: -quantity } },
+    { new: true }
+  );
+};
+
