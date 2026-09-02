@@ -1,9 +1,13 @@
 import Cart, { ICart, ICartItem } from "../../models/cart";
 import { Types } from "mongoose"; // 1. Import Types from mongoose
 
+// cart.repository.ts
 export const findByUserId = async (userId: string): Promise<ICart | null> => {
-  // 2. Convert the string to an ObjectId
   return await Cart.findOne({ user_id: new Types.ObjectId(userId) }).populate("items.product_id");
+};
+
+export const findByUserIdRaw = async (userId: string): Promise<ICart | null> => {
+  return await Cart.findOne({ user_id: new Types.ObjectId(userId) });
 };
 
 export const createCart = async (userId: string): Promise<ICart> => {

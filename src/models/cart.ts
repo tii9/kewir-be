@@ -1,14 +1,14 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model, Document, Types } from "mongoose";
 
 // Interface untuk Cart Item (Embedded)
 export interface ICartItem {
-  product_id: Schema.Types.ObjectId;
+  product_id: Types.ObjectId;
   quantity: number;
 }
 
 // Interface untuk Cart utama
 export interface ICart extends Document {
-  user_id: Schema.Types.ObjectId;
+  user_id: Types.ObjectId;
   items: ICartItem[]; // cart_item masuk ke sini
   created_at: Date;
   updated_at: Date;
