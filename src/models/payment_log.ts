@@ -1,7 +1,7 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model, Document, Types } from "mongoose"; // add Types
 
 export interface IPaymentLog extends Document {
-  order_id: Schema.Types.ObjectId;
+  order_id: Types.ObjectId;  // was Schema.Types.ObjectId
   payment_type: string;
   transaction_id: string;
   amount: number;
