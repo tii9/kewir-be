@@ -13,6 +13,7 @@ const categorySchema = new Schema<ICategory>(
       type: String,
       required: [true, "Category name is required"],
       trim: true,
+      unique: true,
     },
     deleted_at: {
       type: Date,
@@ -20,9 +21,9 @@ const categorySchema = new Schema<ICategory>(
     },
   },
   {
-    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
   }
 );
 
-const Category = model<ICategory>("Category", categorySchema);
+const Category = model<ICategory>("Category", categorySchema); // nama "Category" ini HARUS sama dengan ref: "Category" di product.model.ts
 export default Category;

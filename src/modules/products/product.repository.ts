@@ -1,11 +1,11 @@
 import Product, { IProduct } from "../../models/product";
 
 export const findAll = async (): Promise<IProduct[]> => {
-  return await Product.find();
+  return await Product.find().populate("category_id");
 };
 
 export const findById = async (id: string): Promise<IProduct | null> => {
-  return await Product.findById(id);
+  return await Product.findById(id).populate("category_id");
 };
 
 export const create = async (productData: Partial<IProduct>): Promise<IProduct> => {
